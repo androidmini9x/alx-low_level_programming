@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * Print the last digit
+ * times_table - Print the last digit
  *
  * Return: Void
  */

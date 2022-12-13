@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- * Check is char is lower
- *
+ * _islower - Check is char is lower
+ * @c: char
  * Return: 1 if lower, or 0 for non-lower
  */
 int _islower(int c)

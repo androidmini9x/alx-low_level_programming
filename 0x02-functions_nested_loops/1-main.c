@@ -1,5 +1,6 @@
-#include "main.h"
+#include <limits.h>
 #include <stdio.h>
+#include "main.h"
 
 /**
  * main - check the code
@@ -8,10 +9,11 @@
  */
 int main(void)
 {
-    print_to_98(0);
-    print_to_98(98);
-    print_to_98(111);
-    print_to_98(81);
-    print_to_98(-10);
+    int r;
+    
+    r = print_last_digit(INT_MIN);
+
+    _putchar('0' + r);
+    _putchar('\n');
     return (0);
 }
