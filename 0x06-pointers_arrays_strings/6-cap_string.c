@@ -22,7 +22,8 @@ char *cap_string(char *str)
 			*(str + i) = 'A' + (c - 'a');
 			word = 0;
 		}
-		else if (word == 1 && (c >= 'A' && c <= 'Z'))
+		else if (word == 1 && ((c >= 'A' && c <= 'Z')
+				|| (c >= '0' && c <= '9')))
 		{
 			word = 0;
 		}
