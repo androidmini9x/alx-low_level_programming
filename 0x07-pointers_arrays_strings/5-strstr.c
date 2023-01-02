@@ -19,9 +19,9 @@ char *_strstr(char *haystack, char *needle)
 		if (*(needle + j) == *(haystack + i))
 		{
 			find = 1;
-			while (*(needle + j) != '\0' && *(haystack + i) != '\0')
+			while (*(needle + j) != '\0')
 			{
-				if (*(needle + j) != *(haystack + i))
+				if (*(needle + j) != *(haystack + i) || *(haystack + i) == '\0')
 				{
 					find = 0;
 					i--;
