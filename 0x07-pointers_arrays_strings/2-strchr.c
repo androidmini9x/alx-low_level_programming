@@ -15,6 +15,9 @@ char *_strchr(char *s, char c)
 			return (s + i);
 		i++;
 	}
-
-	return (s + i);
+	/* Check if the c is null byte */
+	if (c == '\0')
+		return (s + i);
+	else
+		return (0);
 }
