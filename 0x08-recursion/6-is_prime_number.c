@@ -8,7 +8,7 @@ int helper(int num, int base);
  */
 int is_prime_number(int n)
 {
-	if (n / 2 == 0)
+	if (n / 2 == 0 || n < 0)
 		return (0);
 	return (helper(n / 2, n));
 }
