@@ -10,32 +10,36 @@
  */
 int main(int argc, char *argv[])
 {
-	int i, j, length, sum;
-	char *ptr;
+	int i, len;
+	int sum = 0;
+	char *str;
 
-	if (argc < 2)
-	printf("0\n");
-	else
+	if (argc == 1)
 	{
-		sum = 0;
-		for (i = 1; i < argc; i++)
+		printf("0\n");
+		return (0);
+	}
+
+	for (i = 1; i < argc; i++)
+	{
+		str = argv[i];
+		len = strlen(str);
+
+		while (len > 0)
 		{
-			ptr = argv[i];
-			length = strlen(ptr);
+			char c = *(str + len - 1);
 
-			for (j = 0; j < length; j++)
+			if (isdigit(c) == 0)
 			{
-				if (isdigit(*(ptr + j)) == 0)
-				{
-					printf("Error\n");
-					return (1);
-				}
+				printf("Error\n");
+				return (1);
 			}
-
-			sum += atoi(argv[i]);
+			len--;
 		}
 
-		printf("%d\n", sum);
+		sum += atoi(argv[i]);
 	}
+	printf("%d\n", sum);
+
 	return (0);
 }
