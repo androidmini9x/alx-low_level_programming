@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * _atoi - just empty file
- * @c: int
+ * @s: char
  * Return: 1 if is digit, otherwise 0
  */
 int _atoi(char *s)
