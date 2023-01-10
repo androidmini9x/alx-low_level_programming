@@ -12,7 +12,6 @@ char **strtow(char *str)
 	int j;
 	int k;
 	int c;
-	int word_width = 0;
 	int word_count = 0;
 	int word_len = 0;
 	char **str_arr;
@@ -20,24 +19,23 @@ char **strtow(char *str)
 	if (str == NULL || strcmp(str, "") == 0)
 		return (0);
 
+	i = 0;
 	while (*(str + i) != '\0')
 	{
 		if (*(str + i) != ' ')
 		{
-			word_len = 0;
-
 			while (*(str + i) != '\0' && *(str + i) != ' ')
 			{
-				word_len++;
 				i++;
 			}
 			word_count++;
-			if (word_len > word_width)
-				word_len = word_width;
 			i--;
 		}
 		i++;
 	}
+
+	if (word_count == 0)
+		return (0);
 
 	str_arr = malloc(sizeof(char *) * (word_count + 1));
 
@@ -59,7 +57,7 @@ char **strtow(char *str)
 				i++;
 			}
 
-			str_arr[j] = malloc(sizeof(char) * word_width + 1);
+			str_arr[j] = malloc(sizeof(char) * (word_len + 1));
 
 			if (str_arr[j] == NULL)
 			{
@@ -75,8 +73,7 @@ char **strtow(char *str)
 			{
 				str_arr[j][c++] = *(str + k);
 			}
-			for (k = c; c < word_width + 1; k++)
-				str_arr[j][c++] = '\0';
+			str_arr[j][c++] = '\0';
 
 			j++;
 			i--;
@@ -84,8 +81,7 @@ char **strtow(char *str)
 		i++;
 	}
 
-	for(k = 0; k < word_width; k++)
-		str_arr[j][k] = '\0';
+	str_arr[j] = NULL;
 
 	return (str_arr);
 }
