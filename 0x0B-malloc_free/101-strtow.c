@@ -33,7 +33,7 @@ char **strtow(char *str)
 		i++;
 	}
 
-	str_arr = malloc(sizeof(char *) * word_count);
+	str_arr = malloc(sizeof(char *) * word_count + 1);
 
 	if (str == NULL)
 		return (0);
