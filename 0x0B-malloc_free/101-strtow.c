@@ -84,7 +84,8 @@ char **strtow(char *str)
 		i++;
 	}
 
-	str_arr[j] = NULL;
+	for(k = 0; k < word_width; k++)
+		str_arr[j][k] = '\0';
 
 	return (str_arr);
 }
