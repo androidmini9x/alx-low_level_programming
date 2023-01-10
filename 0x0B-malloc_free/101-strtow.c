@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 #include <string.h>
+int get_wordcount(char *str);
 /**
  * strtow - splits a string into words;
  * @str: string
@@ -19,20 +20,7 @@ char **strtow(char *str)
 	if (str == NULL || strcmp(str, "") == 0)
 		return (0);
 
-	i = 0;
-	while (*(str + i) != '\0')
-	{
-		if (*(str + i) != ' ')
-		{
-			while (*(str + i) != '\0' && *(str + i) != ' ')
-			{
-				i++;
-			}
-			word_count++;
-			i--;
-		}
-		i++;
-	}
+	word_count = get_wordcount(str);
 
 	if (word_count == 0)
 		return (0);
@@ -84,4 +72,30 @@ char **strtow(char *str)
 	str_arr[j] = NULL;
 
 	return (str_arr);
+}
+/**
+ * get_wordcount - get the words in string
+ * @str: string
+ * Return: int
+ */
+int get_wordcount(char *str)
+{
+	int i = 0;
+	int word_count = 0;
+
+	while (*(str + i) != '\0')
+	{
+		if (*(str + i) != ' ')
+		{
+			while (*(str + i) != '\0' && *(str + i) != ' ')
+			{
+				i++;
+			}
+			word_count++;
+			i--;
+		}
+		i++;
+	}
+
+	return (word_count);
 }
