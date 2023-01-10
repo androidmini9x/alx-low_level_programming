@@ -76,5 +76,7 @@ char **strtow(char *str)
 		i++;
 	}
 
+	str_arr[j] = NULL;
+
 	return (str_arr);
 }
