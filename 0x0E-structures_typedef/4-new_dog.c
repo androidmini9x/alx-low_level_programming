@@ -25,6 +25,7 @@ int _strlen(char *s)
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *n_dog;
+	int i = 0;
 
 	n_dog = malloc(sizeof(dog_t));
 	if (n_dog == NULL)
