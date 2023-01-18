@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "3-calc.h"
 /**
  * main - Starter Point
@@ -8,7 +7,7 @@
  * @argv: array of arg
  * Return: int
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	int num1, num2, result;
 	char *op;
@@ -26,16 +25,10 @@ int main(int argc, char *argv[])
 
 	func = get_op_func(op);
 
-	if (func == NULL || strlen(op) > 1)
+	if (func == NULL)
 	{
 		printf("Error\n");
 		exit(99);
-	}
-
-	if ((*op == '/' || *op == '%') && num2 == 0)
-	{
-		printf("Error\n");
-		exit(100);
 	}
 
 	result = func(num1, num2);
