@@ -7,7 +7,7 @@
  * @argv: array of arg
  * Return: int
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
 	int num1, num2, result;
 	char *op;
