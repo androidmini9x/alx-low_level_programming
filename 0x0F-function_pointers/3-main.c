@@ -24,6 +24,12 @@ int main(int argc, char **argv)
 	num2 = atoi(argv[3]);
 	op = argv[2];
 
+	if ((*op == '/' || *op == '%') && num2 == 0)
+	{ /* divide by zero exception */
+		printf("Error\n");
+		return (100);
+	}
+
 	func = get_op_func(op);
 
 	if (func == NULL || strlen(op) > 1)
