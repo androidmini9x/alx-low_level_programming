@@ -50,9 +50,7 @@ void print_all(const char * const format, ...)
 void print_str(va_list ap)
 {
 	char *str = va_arg(ap, char*);
-
-	if (str == NULL)
-		str = "(nil)";
+	str = (str == NULL) ? "(nil)" : str;
 	printf("%s", str);
 }
 /**
@@ -62,7 +60,7 @@ void print_str(va_list ap)
  */
 void print_int(va_list ap)
 {
-	printf("%i", va_arg(ap, int));
+	printf("%d", va_arg(ap, int));
 }
 /**
  * print_char - print char
