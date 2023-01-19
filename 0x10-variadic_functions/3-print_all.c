@@ -13,7 +13,7 @@ void print_char(va_list ap);
 void print_all(const char * const format, ...)
 {
 	va_list ap;
-	int i, j;
+	unsigned int i, j;
 	op_t op[] = {
 		{'c', print_char},
 		{'i', print_int},
