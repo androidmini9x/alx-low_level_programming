@@ -50,6 +50,7 @@ void print_all(const char * const format, ...)
 void print_str(va_list ap)
 {
 	char *str = va_arg(ap, char*);
+
 	str = (str == NULL) ? "(nil)" : str;
 	printf("%s", str);
 }
