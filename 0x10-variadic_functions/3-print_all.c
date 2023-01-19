@@ -20,6 +20,7 @@ void print_all(const char * const format, ...)
 		{'f', print_float},
 		{'s', print_str},
 	};
+	char *sep = "";
 
 	va_start(ap, format);
 	i = 0;
@@ -30,9 +31,9 @@ void print_all(const char * const format, ...)
 		{
 			if (*(format + i) == op[j].op)
 			{
-				if (i > 0)
-					printf(", ");
+				printf("%s", sep);
 				op[j].func(ap);
+				sep = ", ";
 				break;
 			}
 			j++;
