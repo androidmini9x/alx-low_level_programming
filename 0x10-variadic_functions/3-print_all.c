@@ -62,7 +62,7 @@ void print_str(va_list ap)
  */
 void print_int(va_list ap)
 {
-	printf("%d", va_arg(ap, int));
+	printf("%i", va_arg(ap, int));
 }
 /**
  * print_char - print char
