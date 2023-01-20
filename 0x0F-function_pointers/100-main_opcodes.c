@@ -6,35 +6,30 @@
  * @argv: Array of arg
  * Return: Void
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int number, i;
-	unsigned char *ptr;
+	int i, n;
+
 
 	if (argc != 2)
 	{
 		printf("Error\n");
-		exit(1);
+		return (1);
 	}
-
-	number = atoi(argv[1]);
-
-	if (number < 0)
+	n = atoi(argv[1]);
+	if (n < 0)
 	{
 		printf("Error\n");
 		exit(2);
 	}
 
-	ptr = (unsigned char *) main;
-	i = 0;
-	if (number > 0)
+	for (i = 0; i < n; i++)
 	{
-		while (i < (number - 1))
-		{
-			printf("%02hhx ", ptr[i]);
-			i++;
-		}
-	printf("%hhx\n", ptr[i]);
+		printf("%02hhx", *((char *)main + i));
+		if (i < n - 1)
+			printf(" ");
+		else
+			printf("\n");
 	}
 	return (0);
 }
