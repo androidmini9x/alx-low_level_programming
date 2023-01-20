@@ -25,14 +25,16 @@ int main(int argc, char **argv)
 		exit(2);
 	}
 
-	ptr = (unsigned char*) main;
+	ptr = (unsigned char *) main;
 	i = 0;
-	while (i < (number - 1))
+	if (number > 0)
 	{
-		printf("%02hhx ", ptr[i]);
-		i++;
-	}
+		while (i < (number - 1))
+		{
+			printf("%02hhx ", ptr[i]);
+			i++;
+		}
 	printf("%hhx\n", ptr[i]);
-
+	}
 	return (0);
 }
