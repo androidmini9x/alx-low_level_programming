@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	i = 0;
 	while (i < number)
 	{
-		printf("%02hhx ", *((char *)main + i));
+		printf("%02hhx ", *((char *) main + i));
 		if (i < number - 1)
 			printf(" ");
 		else
