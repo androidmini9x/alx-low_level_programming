@@ -9,7 +9,6 @@
 int main(int argc, char **argv)
 {
 	int number, i;
-	char *ptr;
 
 	if (argc != 2)
 	{
@@ -25,12 +24,10 @@ int main(int argc, char **argv)
 		exit(2);
 	}
 
-	ptr = (char *) main;
-
 	i = 0;
 	while (i < number)
 	{
-		printf("%02hhx ", ptr[i++]);
+		printf("%02hhx ", *((char *)main + i));
 		if (i < number - 1)
 			printf(" ");
 		else
