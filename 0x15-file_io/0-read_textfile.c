@@ -3,11 +3,11 @@
  * read_textfile - reads a text file and prints it.
  * @filename: filename
  * @letters: number of letters it should read and print
- * Return: count of printed char
+ * Return: fd_w of printed char
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd, count;
+	int fd, fd_w;
 	char *buffer;
 	size_t fd_r;
 
@@ -23,23 +23,21 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 
 	fd_r = read(fd, buffer, letters);
-	if (fd_r <= 0)
+	if (fd_r == -1)
 	{
 		free(buffer);
 		close(fd);
 		return (0);
 	}
-
-	count = write(STDOUT_FILENO, buffer, letters);
-	if (count == -1)
+	close(fd);
+	fd_w = write(STDOUT_FILENO, buffer, letters);
+	if (fd_w == -1 || fd_w != fd_r)
 	{
 		free(buffer);
-		close(fd);
 		return (0);
 	}
 
 	free(buffer);
-	close(fd);
 
-	return (count);
+	return (fd_r);
 }

@@ -68,11 +68,11 @@ void cp(char *source, char *dist)
 int main(int argc, char *argv[])
 {
 
-	if (ac != 3)
+	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	cp(av[1], av[2]);
+	cp(argv[1], argv[2]);
 	return (0);
 }
