@@ -32,7 +32,7 @@ void cp(char *source, char *dist)
 		exit(98);
 	}
 
-	fd_dist = open(dist, O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	fd_dist = open(dist, O_CREAT | O_TRUNC | O_WRONLY | O_APPEND, 0664);
 	if (fd_dist == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dist);
@@ -61,11 +61,11 @@ void cp(char *source, char *dist)
 }
 /**
  * main - check the code
- * @ac: number of arg
- * @av: array of value
+ * @argc: number of arg
+ * @argv: array of value
  * Return: Always 0.
  */
-int main(int ac, char **av)
+int main(int argc, char *argv[])
 {
 
 	if (ac != 3)
