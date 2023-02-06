@@ -51,7 +51,6 @@ void cp(char *source, char *dist)
 		if (op == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dist);
-			close_file(fd_src);
 			exit(99);
 		}
 	}
