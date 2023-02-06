@@ -1,78 +1,69 @@
 #include "main.h"
 /**
- * close_file - close file stream
- * @fd: file pointer
- * Return: Void
+ * close_w - close function
+ * @fdread: read
+ * @fdwrite: write
  */
-void close_file(int fd)
+void close_w(int fdread, int fdwrite)
 {
-	int cls = close(fd);
-
-	if (cls == -1)
+	if (close(fdwrite) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fdwrite);
+		exit(100);
+	}
+	if (close(fdread) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fdread);
 		exit(100);
 	}
 }
+
 /**
- * cp - copy file from src to dis
- * @source: source
- * @dist: distenation
- * Return: Always 0.
- */
-void cp(char *source, char *dist)
-{
-	int fd_src, fd_dist, op;
-	char buffer[BUFFERSIZE];
-
-	fd_src = open(source, O_RDONLY);
-	if (fd_src == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", source);
-		exit(98);
-	}
-
-	fd_dist = open(dist, O_CREAT | O_TRUNC | O_WRONLY | O_APPEND, 0664);
-	if (fd_dist == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dist);
-		close_file(fd_src);
-		exit(99);
-	}
-
-	while (op == BUFFERSIZE)
-	{
-		op = read(fd_src, buffer, BUFFERSIZE);
-		if (op == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", source);
-			exit(98);
-		}
-		op = write(fd_dist, buffer, op);
-		if (op == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dist);
-			exit(99);
-		}
-	}
-
-	close_file(fd_dist);
-	close_file(fd_src);
-}
-/**
- * main - check the code
- * @argc: number of arg
- * @argv: array of value
- * Return: Always 0.
+ * main - Function that copies the content of a file to another file
+ * @argc: argument of count
+ * @argv: argument of array
+ * Return: exit_success if success, exit error 97, 98, 99, 100
  */
 int main(int argc, char *argv[])
 {
-
+	char buffer[BUFFERSIZE];
+	char *file_from, *file_to;
+	int fdread, fdwrite;
+	ssize_t rd = 1024, wr;
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	cp(argv[1], argv[2]);
+	file_from = argv[1];
+	file_to = argv[2];
+	fdread = open(file_from, O_RDONLY);
+	if (fdread == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+		exit(98);
+	}
+	fdwrite = open(file_to, O_CREAT | O_TRUNC | O_WRONLY | O_APPEND, 0664);
+	if (fdwrite == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+		exit(99);
+	}
+	while (rd == BUFFERSIZE)
+	{
+		rd = read(fdread, buffer, BUFFERSIZE);
+		if (rd == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+			exit(98);
+		}
+		wr = write(fdwrite, buffer, rd);
+		if (wr == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+			exit(99);
+		}
+	}
+	close_w(fdread, fdwrite);
 	return (0);
 }
